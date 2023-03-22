@@ -20,15 +20,26 @@ Cart.prototype.addItem = function(product, quantity) {
 
 Cart.prototype.saveToLocalStorage = function() {
   // TODO: Fill in this instance method to save the contents of the cart to localStorage
+  let stringifiedCart = JSON.stringify (this.items);
+  console.log (stringifiedCart);
+  localStorage.setItem ('cart',stringifiedCart);
 };
 
 Cart.prototype.removeItem = function(item) {
   // TODO: Fill in this instance method to remove one item from the cart.
   // Note: You will have to decide what kind of parameter to pass in here!
+  let index = this.items.indexOf(item);
+  // if the item is found, remove it using the splice method
+  if (index !== -1){
+    this.items.splice(index, 1);
+  }
+
 };
 
 Cart.prototype.updateCounter = function() {
   // TODO: Update the cart count in the header nav with the number of items in the Cart
+  let counterRender = document.getElementById ('itemCount')
+  counterRender.textContent = this.items.length;
 }
 
 const CartItem = function(product, quantity) {

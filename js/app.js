@@ -33,7 +33,6 @@ Cart.prototype.removeItem = function(item) {
   if (index !== -1){
     this.items.splice(index, 1);
   }
-
 };
 
 Cart.prototype.updateCounter = function() {

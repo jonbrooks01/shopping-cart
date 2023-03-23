@@ -3,8 +3,20 @@
 'use strict';
 
 // Set up an empty cart for use on this page.
-state.cart = new Cart([]);
+// state.cart = new Cart([]);
 
+// TERNARY -> shorthand if else // we are reinstantiating here
+// state.cart = localStorage.cart ? new Cart(JSON.parse(localStorage.cart)) : new Cart([]);
+
+if (localStorage.cart) {
+  state.cart = new Cart(JSON.parse(localStorage.cart));
+  state.cart.updateCounter();
+  updateCartPreview();
+} else {
+  state.cart = new Cart([]);
+}
+
+console.log(state.cart)
 // On screen load, we call this method to put all of the product options
 // (the things in the state.allProducts array) into the drop down list.
 function populateForm() {

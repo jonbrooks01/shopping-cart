@@ -6,6 +6,8 @@ const state = {
   cart: null,
 };
 
+let quantityInCart = 0;
+
 // Cart constructor.
 const Cart = function(items) {
   // this.items is an array of CartItem instances.
@@ -29,15 +31,21 @@ Cart.prototype.removeItem = function(item) {
   // Note: You will have to decide what kind of parameter to pass in here!
   let index = this.items.indexOf(item);
   // if the item is found, remove it using the splice method
-  if (index !== -1){
-    this.items.splice(index, 1);
-  }
+  this.items.splice(index, 1);
+  state.cart.saveToLocalStorage();
 };
 
 Cart.prototype.updateCounter = function() {
   // TODO: Update the cart count in the header nav with the number of items in the Cart
-  let counterRender = document.getElementById ('itemCount');
-  counterRender.textContent = this.items.length;
+  // let counterRender = document.getElementById ('itemCount');
+  // counterRender.textContent = this.items.length;
+
+  for(let i = 0; i < this.items.length; i++){
+    quantityInCart += +this.items[i].quantity;
+  }
+
+  document.getElementById('itemCount').textContent = quantityInCart
+
 }
 
 const CartItem = function(product, quantity) {

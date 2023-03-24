@@ -1,1 +1,22 @@
 /* TODO: Make it awesome */
+
+body {
+    background-color:lightblue;
+
+}
+
+table {
+    background-color: aliceblue;
+    border: 5px solid rgb(78, 19, 119);
+    padding: 5vw;
+    margin: 5vw;
+  }
+  
+  th, td, tr {
+    margin-top: 5px;
+    height: 20px;
+    border: 2px solid rgb(78, 19, 119);
+    padding: 3vw;
+    text-align: center;
+
+  }

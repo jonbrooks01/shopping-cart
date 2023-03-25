@@ -42,12 +42,12 @@ const tbody = document.querySelector('#cart tbody');
 for(let i = 0; i < state.cart.items.length; i++){
   // TODO: Create a TR -> our row
   let tr = document.createElement('tr');
-  tr.className = state.cart.items[i].product;
+  // tr.className = state.cart.items[i].product;
   // TODO: Create a TD for the delete link
   // let deleteLink = document.createElement('button');
 
-  let deleteLink = document.createElement('td');
-  // deleteLink.classList.add('deleteButton');
+  let deleteLink = document.createElement('button');
+  deleteLink.classList.add('deleteButton');
   deleteLink.id = i;
   deleteLink.textContent = 'x';
   tr.appendChild(deleteLink);
@@ -73,13 +73,13 @@ function removeItemFromCart(event) {
 
   // TODO: Save the cart back to local storage
 
-  console.log(event.target.innerHTML);
-  console.log(event.target.parentNode.className);
-  if(event.target.innerHTML === 'x'){
-    let productName = event.target.parentNode.className;
-    state.cart.removeItem(productName);
-    renderCart();
+  let targetId = event.target.id;
+  let deleteButtons = document.querySelectorAll('deleteButton');
+  for(let i = 0; i < deleteButtons.length; i++){
+    deleteButtons[i].addEventListener('click', removeItemFromCart);
   }
+  state.cart.removeItem(targetId);
+  renderCart();
 
   
   // TODO: Re-draw the cart table

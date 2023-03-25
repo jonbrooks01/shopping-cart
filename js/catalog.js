@@ -44,7 +44,7 @@ function handleSubmit(event) {
   addSelectedItemToCart();
   state.cart.saveToLocalStorage();
   state.cart.updateCounter();
-  updateCartPreview();
+  updateCartPreview(state.cart.items.pop());
 
 }
 
@@ -60,9 +60,9 @@ function addSelectedItemToCart() {
 }
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
-function updateCartPreview() {
+function updateCartPreview(item) {
   // TODO: Get the item and quantity from the form
-  let item = state.cart.items.pop();
+  // let item = state.cart.items.pop();
   let product = item.product;
   let quantity = item.quantity;
   console.log(product, quantity);

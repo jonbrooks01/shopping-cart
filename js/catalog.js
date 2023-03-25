@@ -11,10 +11,13 @@
 if (localStorage.cart) {
   state.cart = new Cart(JSON.parse(localStorage.cart));
   state.cart.updateCounter();
-  updateCartPreview();
+  for (let i = 0; i < state.cart.items.length; i++){
+    updateCartPreview(state.cart.items[i]);
+  }
 } else {
   state.cart = new Cart([]);
 }
+
 
 console.log(state.cart)
 // On screen load, we call this method to put all of the product options
@@ -43,7 +46,7 @@ function handleSubmit(event) {
   addSelectedItemToCart();
   state.cart.saveToLocalStorage();
   state.cart.updateCounter();
-  updateCartPreview();
+  updateCartPreview(state.cart.items.pop());
 
 }
 
@@ -59,19 +62,21 @@ function addSelectedItemToCart() {
 }
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
-function updateCartPreview() {
+function updateCartPreview(item) {
   // TODO: Get the item and quantity from the form
-  let item = state.cart.items.pop();
+  // let item = state.cart.items.pop();
   let product = item.product;
   let quantity = item.quantity;
   console.log(product, quantity);
   // TODO: Add a new element to the cartContents div with that information
   let cartContents = document.getElementById('cartContents');
-  let listElem = document.createElement('ul');
-  cartContents.appendChild(listElem);
-  let liElem = document.createElement('li');
-  liElem.textContent = `${quantity} ${product}`;
-  listElem.appendChild(liElem);
+  let itemElem = document.createElement('p');
+  cartContents.appendChild(itemElem);
+  if( quantity === 1 || product === 'Boots' || product === 'Wine Glass'){
+    itemElem.textContent = `${quantity} ${product}`;
+  } else {
+    itemElem.textContent = `${quantity}: ${product}s`;
+  }
 
 }
 

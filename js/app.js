@@ -31,7 +31,7 @@ Cart.prototype.removeItem = function(item) {
   // Note: You will have to decide what kind of parameter to pass in here!
   // let index = this.items.indexOf(item);
   // if the item is found, remove it using the splice method
-  this.items.splice(index, 1);
+  this.items.splice(item, 1);
   state.cart.saveToLocalStorage();
 };
 

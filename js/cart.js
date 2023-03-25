@@ -35,7 +35,7 @@ function showCart() {
 
   // TODO: Find the table body
 
-let tbodyFill = document.querySelector('#cart tbody');
+// let tbodyFill = document.querySelector('#cart tbody');
 
 const tbody = document.querySelector('#cart tbody');
 // TODO: Iterate over the items in the cart
